@@ -2,21 +2,22 @@
 
 ## users テーブル
 
-| Column                | Type    | Options     |
-| --------------------- | ------- | ----------- |
-| nickname              | string  | null: false |
+| Column                | Type    | Options                   |
+| --------------------- | ------- | ------------------------- |
+| nickname              | string  | null: false               |
 | email                 | string  | null: false, unique: true |
-| encrypted_password    | string  | null: false |
-| surname               | string  | null: false |
-| given_name            | string  | null: false |
-| surname_kana          | string  | null: false |
-| given_name_kana       | string  | null: false |
-| birthday              | date    | null: false |
+| encrypted_password    | string  | null: false               |
+| surname               | string  | null: false               |
+| given_name            | string  | null: false               |
+| surname_kana          | string  | null: false               |
+| given_name_kana       | string  | null: false               |
+| birthday              | date    | null: false               |
 
 ### Association
 
 - has_many :items
 - has_many :destinations
+- has_many :purchase_management
 
 ## items テーブル
 
@@ -35,17 +36,36 @@
 ### Association
 
 - belongs_to :user
+- has_one :purchase_management
 - has_one_attached :image
 
 ## destinations テーブル
 
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| postal_code     | string     | null: false                    |
-| prefecture_id   | integer    | null: false                    |
-| municipality_id | integer    | null: false                    |
-| address_id      | integer    | null: false                    |
-| building_name   | string     | null: true                     | 
-| phone_number    | string     | null: false                    | 
+| Column              | Type       | Options                        |
+| ------------------- | ---------- | ------------------------------ |
+| postal_code         | string     | null: false                    |
+| prefecture_id       | integer    | null: false                    |
+| municipality_id     | integer    | null: false                    |
+| address_id          | integer    | null: false                    |
+| building_name       | string     | null: true                     | 
+| phone_number        | string     | null: false                    | 
+| purchase_management | references | null: false, foreign_key: true | 
+
 
 ### Association
+
+- has_one :purchase_management
+
+## purchase_management テーブル
+
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| user          | references | null: false, foreign_key: true |
+| item          | references | null: false, foreign_key: true |
+| destination   | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
+- belongs_to :destination
