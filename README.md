@@ -16,7 +16,7 @@
 ### Association
 
 - has_many :items
-- has_many :purchases
+- has_many :destinations
 
 ## items テーブル
 
@@ -27,7 +27,7 @@
 | category_id        | integer    | null: false                    |
 | item_state_id      | integer    | null: false                    |
 | shipping_burden_id | integer    | null: false                    |
-| shipping_area_id   | integer    | null: false                    |
+| prefecture_id      | integer    | null: false                    |
 | days_to_ship_id    | integer    | null: false                    | 
 | item_price         | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
