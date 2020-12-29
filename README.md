@@ -16,7 +16,6 @@
 ### Association
 
 - has_many :items
-- has_many :destinations
 - has_many :purchase_management
 
 ## items テーブル
@@ -62,7 +61,6 @@
 | ------------- | ---------- | ------------------------------ |
 | user          | references | null: false, foreign_key: true |
 | item          | references | null: false, foreign_key: true |
-| destination   | references | null: false, foreign_key: true |
 
 ### Association
 
