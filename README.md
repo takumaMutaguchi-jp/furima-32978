@@ -16,7 +16,7 @@
 ### Association
 
 - has_many :items
-- has_many :purchase_management
+- has_many :purchase_managements
 
 ## items テーブル
 
@@ -44,8 +44,8 @@
 | ------------------- | ---------- | ------------------------------ |
 | postal_code         | string     | null: false                    |
 | prefecture_id       | integer    | null: false                    |
-| municipality_id     | string     | null: false                    |
-| address_id          | string     | null: false                    |
+| municipality        | string     | null: false                    |
+| address             | string     | null: false                    |
 | building_name       | string     |                                | 
 | phone_number        | string     | null: false                    | 
 | purchase_management | references | null: false, foreign_key: true | 
