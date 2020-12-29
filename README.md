@@ -45,16 +45,16 @@
 | ------------------- | ---------- | ------------------------------ |
 | postal_code         | string     | null: false                    |
 | prefecture_id       | integer    | null: false                    |
-| municipality_id     | integer    | null: false                    |
-| address_id          | integer    | null: false                    |
-| building_name       | string     | null: true                     | 
+| municipality_id     | string     | null: false                    |
+| address_id          | string     | null: false                    |
+| building_name       | string     |                                | 
 | phone_number        | string     | null: false                    | 
 | purchase_management | references | null: false, foreign_key: true | 
 
 
 ### Association
 
-- has_one :purchase_management
+- belongs_to :purchase_management
 
 ## purchase_management テーブル
 
@@ -68,4 +68,4 @@
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :destination
+- has_one :destination
