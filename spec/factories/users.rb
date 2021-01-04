@@ -11,6 +11,6 @@ FactoryBot.define do
     given_name            {person.first.kanji}
     surname_kana          {person.last.katakana}
     given_name_kana       {person.first.katakana}
-    date                  {Faker::Date.backward}
+    birthday              {Faker::Date.backward}
   end
 end
