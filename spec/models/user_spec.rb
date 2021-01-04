@@ -66,10 +66,20 @@ RSpec.describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include("Surname kana can't be blank")
       end
+      it 'surname_kanaが全角カタカナでなければ登録できない' do
+        @user.surname_kana = 'test'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Surname kana is invalid")
+      end
       it 'given_name_kanaが空だと登録できない' do
         @user.given_name_kana = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Given name kana can't be blank")
+      end
+      it 'given_name_kanaが全角カタカナでなければ登録できない' do
+        @user.given_name_kana = 'test'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Given name kana is invalid")
       end
       it 'birthdayが空だと登録できない' do
         @user.birthday = ''
