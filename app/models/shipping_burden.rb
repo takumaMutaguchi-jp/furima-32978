@@ -1,0 +1,2 @@
+class ShippingBurden < ApplicationRecord
+end
