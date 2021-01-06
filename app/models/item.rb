@@ -8,6 +8,9 @@ class Item < ApplicationRecord
   has_one_attached :image
   
   # バリデーション
-  validates :category_id, numericality: { other_than: 1 }
+  with_options numericality: { other_than: 1 } do
+    validates :category_id
+    validates :item_state_id
+  end
 
 end
