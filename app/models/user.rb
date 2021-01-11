@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   # アソシエーション
   has_many :items
+  has_many :purchase_managements
 
   # バリデーション
   with_options presence: true do
