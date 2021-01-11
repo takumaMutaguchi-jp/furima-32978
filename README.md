@@ -38,7 +38,7 @@
 - has_one :purchase_management
 - has_one_attached :image
 
-## destinations テーブル
+## orders テーブル
 
 | Column              | Type       | Options                        |
 | ------------------- | ---------- | ------------------------------ |
@@ -66,4 +66,4 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one :destination
+- has_one :order
