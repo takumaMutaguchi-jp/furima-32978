@@ -1,5 +1,6 @@
 class Order < ApplicationRecord
 
+  attr_accessor :token
   # アソシエーション
   belongs_to :purchase_management
 
@@ -11,6 +12,7 @@ class Order < ApplicationRecord
     validates :address
     validates :phone_number
     validates :purchase_managemen
+    validates :token
   end
 
 end
