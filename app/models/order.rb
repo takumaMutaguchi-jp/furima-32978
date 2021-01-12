@@ -11,7 +11,7 @@ class Order < ApplicationRecord
     validates :municipality
     validates :address
     validates :phone_number
-    validates :purchase_managemen
+    validates :purchase_management
     validates :token
   end
 
