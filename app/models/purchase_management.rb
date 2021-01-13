@@ -1,5 +1,4 @@
 class PurchaseManagement < ApplicationRecord
-
   # アソシエーション
   belongs_to :user
   belongs_to :item
@@ -10,5 +9,4 @@ class PurchaseManagement < ApplicationRecord
     validates :user
     validates :item
   end
-
 end

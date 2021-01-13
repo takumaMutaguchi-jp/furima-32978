@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
     if @order.valid?
       pay_item
       @order.save
-      return redirect_to root_path
+      redirect_to root_path
     else
       @purchase_management.destroy
       @item = Item.find(params[:item_id])
@@ -23,12 +23,14 @@ class OrdersController < ApplicationController
   end
 
   private
+
   def order_params
-    params.require(:order).permit(:postal_code, :prefecture_id, :municipality, :address, :building_name, :phone_number).merge(token: params[:token])
+    params.require(:order).permit(:postal_code, :prefecture_id, :municipality, :address, :building_name,
+                                  :phone_number).merge(token: params[:token])
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     @item = Item.find(params[:item_id])
     Payjp::Charge.create(
       amount: @item.item_price,  # 商品の値段
@@ -39,9 +41,6 @@ class OrdersController < ApplicationController
 
   def move_to_index
     @item = Item.find(params[:item_id])
-    if current_user.id == @item.user_id || @item.purchase_management != nil
-      redirect_to root_path
-    end
+    redirect_to root_path if current_user.id == @item.user_id || !@item.purchase_management.nil?
   end
-
 end
