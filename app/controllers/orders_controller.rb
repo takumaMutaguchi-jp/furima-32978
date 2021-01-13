@@ -16,7 +16,6 @@ class OrdersController < ApplicationController
       redirect_to root_path
     else
       @purchase_management.destroy
-      @item = Item.find(params[:item_id])
       render 'index'
     end
   end
@@ -30,7 +29,6 @@ class OrdersController < ApplicationController
 
   def pay_item
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']
-    @item = Item.find(params[:item_id])
     Payjp::Charge.create(
       amount: @item.item_price,  # 商品の値段
       card: order_params[:token],    # カードトークン
