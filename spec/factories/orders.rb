@@ -6,6 +6,7 @@ FactoryBot.define do
     address       { Faker::Address.street_address }
     building_name { Faker::Address.secondary_address }
     phone_number  { Faker::PhoneNumber.subscriber_number(length: 11) }
-    association   :purchase_management
+    token         { "tok_xxxxxxxxxxxxxxxxxxxxxxxxxxxx" }
+    purchase_management_id { FactoryBot.create(:purchase_management).id }
   end
 end

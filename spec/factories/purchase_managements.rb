@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :purchase_management do
-    association :user
-    association :item
+    user_id { FactoryBot.create(:user).id }
+    item_id { FactoryBot.create(:item).id }
   end
 end
