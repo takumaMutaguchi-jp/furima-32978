@@ -6,7 +6,6 @@ class Order < ApplicationRecord
 
   # バリデーション
   with_options presence: true do
-    validates :postal_code
     validates :prefecture_id
     validates :municipality
     validates :address
@@ -15,4 +14,6 @@ class Order < ApplicationRecord
     validates :token
   end
 
+  validates :postal_code, presence: true, format: { with: /\A\d{3}[-]\d{4}+\z/ }
+  validates :phone_number, presence: true, format: { with: /\A\d{11}+\z/ }
 end
