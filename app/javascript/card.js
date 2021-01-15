@@ -1,17 +1,19 @@
 const pay = () => {
+  console.log("pay開始")
   Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY);
   const form = document.getElementById("charge-form");
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
+    console.log("submit")
     // クレジットカード情報の取得
     const formResult = document.getElementById("charge-form");
     const formData = new FormData(formResult);
     const card = {
-      number: formData.get("order[number]"),
-      cvc: formData.get("order[cvc]"),
-      exp_month: formData.get("order[exp_month]"),
-      exp_year: `20${formData.get("order[exp_year]")}`,
+      number: formData.get("order_purchase[number]"),
+      cvc: formData.get("order_purchase[cvc]"),
+      exp_month: formData.get("order_purchase[exp_month]"),
+      exp_year: `20${formData.get("order_purchase[exp_year]")}`,
     };
 
     // PAY.JPへカード情報を送信しトークンを取得,トークンをフォームに埋め込み
