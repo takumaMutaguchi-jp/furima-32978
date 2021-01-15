@@ -42,6 +42,7 @@ class ItemsController < ApplicationController
   end
 
   private
+
   def item_params
     params.require(:item).permit(:image, :item_name, :item_description, :category_id, :item_state_id, :shipping_burden_id,
                                  :prefecture_id, :days_to_ship_id, :item_price).merge(user_id: current_user.id)
@@ -52,8 +53,6 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    if current_user.id != @item.user_id
-      redirect_to action: :index
-    end
+    redirect_to action: :index if current_user.id != @item.user_id || !@item.purchase_management.nil?
   end
 end
