@@ -3,19 +3,16 @@ class OrdersController < ApplicationController
   before_action :move_to_index
 
   def index
-    @order = Order.new
+    @order_purchase = OrderPurchase.new
   end
 
-  def create
-    @purchase_management = current_user.purchase_managements.create(item_id: params[:item_id])
-    @order = Order.new(order_params)
-    @order.purchase_management_id = @purchase_management.id
-    if @order.valid?
+  def create    
+    @order_purchase = OrderPurchase.new(order_params)
+    if @order_purchase.valid?
       pay_item
-      @order.save
+      @order_purchase.save
       redirect_to root_path
     else
-      @purchase_management.destroy
       render 'index'
     end
   end
@@ -23,8 +20,8 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:postal_code, :prefecture_id, :municipality, :address, :building_name,
-                                  :phone_number).merge(token: params[:token])
+    params.require(:order_purchase).permit(:postal_code, :prefecture_id, :municipality, :address, :building_name,
+                                  :phone_number).merge(token: params[:token], user_id: current_user.id, item_id: params[:item_id])
   end
 
   def pay_item
