@@ -1,11 +1,9 @@
 const pay = () => {
-  console.log("pay開始")
   Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY);
   const form = document.getElementById("charge-form");
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    console.log("submit")
     // クレジットカード情報の取得
     const formResult = document.getElementById("charge-form");
     const formData = new FormData(formResult);
